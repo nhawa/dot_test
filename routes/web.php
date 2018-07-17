@@ -31,4 +31,10 @@ $router->get('/',function(){
 
 $router->get('test1','DotTestController@test1');
 $router->post('test1','DotTestController@searchNumber');
-$router->get('test2','DotTestController@test2Sprint1');
+
+//$router->get('testc','RajaOngkirController@getcity');
+//$router->get('testp','RajaOngkirController@getProvince');
+//$router->get('save','RajaOngkirController@saveToDB');
+
+$router->get('search/provinces','AreaController@getProvince');
+$router->get('search/cities','AreaController@getcity');
