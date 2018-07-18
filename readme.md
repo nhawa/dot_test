@@ -6,14 +6,16 @@ untuk langkah penginstalan projek ini dapat `didownload langsung` atau dengan pe
 ```sh
 $ git clone https://github.com/nhawa/dot_test.git
 ```
+
+copy `.env.example` file dan rename menjadi `.env`
+
+buka `.env` file dan lakukan settingan database sesuai dengan database yang anda pakai
+
 silahkan buka terminal dan masuk ke folder project yg telah di download dan lanjutkan installasi dengan perintah
 
 ```sh
 $ composer install
 ```
-copy `.env.example` file dan rename menjadi `.env`
-
-buka `.env` file dan lakukan settingan database sesuai dengan database yang anda pakai
 
 setelah selesai. lakukan migrasi database dengan perintah
 
@@ -21,10 +23,63 @@ setelah selesai. lakukan migrasi database dengan perintah
 $ php artisan migrate 
 ``` 
 
-## Security Vulnerabilities
+##Dokumentasi Pengerjaan test 1
+Url untuk test satu dapat dilihat di 
+```url
+[GET] /test1 
+```
+##Dokumentasi Pengerjaan Sprint 1
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+fetching API data provinsi & kota dengan artisan command
+```sh
+$ php artisan get_data_ro
+```
+REST API untuk pencarian provinsi dan kota dengan endpoint berikut:
+```url
+[GET] /search/provinces?id={province_id}
+[GET] /search/cities?id={city_id} 
+```
+## Dokumentasi pengerjaan sprint 2
+Untuk swap source pencarian provinsi dan kota bisa di atur di
+```path
+ path: ./config/app.php
+```
+dengan variable `'RO'` untuk Rajaongkir 
+```var
+'area_source' => 'RO'
+```
+dan `'DB'` untuk database
+```var
+'area_source' => 'DB'
+```
 
-## License
+API Login bisa dengan endpoint 
+```url
+[POST] /login
+```
+dengan parameter
 
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+ Params | Desc 
+ ------|------
+ email | email user
+ password| password user
+ 
+user dapat di tambahkan dengan perintah
+```sh
+$ php artisan db:seed 
+```
+
+REST API untuk pencarian provinsi dan kota dengan endpoint berikut:
+```url
+[GET] /search/provinces?id={province_id}
+[GET] /search/cities?id={city_id} 
+```
+dengan menyertakan `apikey` pada `headers` yang didapat dari API Login
+
+untuk melakukan testing web service dilakukan dengan perintah
+```sh
+$ composer test 
+```
+
+## Jawaban Untuk pertanyaan 
+untuk jawaban dari pertanyaan Knowledge and Experience dapat di lihat di file `jawaban.md`
