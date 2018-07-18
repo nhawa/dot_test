@@ -24,6 +24,35 @@ class RajaOngkirController extends Controller
         }
     }
 
+
+    public function getProvinceById($id){
+//        $res = realpath(__DIR__.'../../../../public/province.json');
+//        $res = file_get_contents($res);
+////        dd(json_decode($res));
+//        $res =  json_decode($res);
+        $res = $this->sendGuzzle('province?id='.$id);
+//        return $res;
+        if ($res->rajaongkir->status->code == 200){
+            return $res->rajaongkir->results;
+        }else{
+            return null;
+        }
+    }
+
+    public function getCityById($id){
+//        $res = realpath(__DIR__.'../../../../public/city.json');
+//        $res = file_get_contents($res);
+////        dd(json_decode($res));
+//        $res =  json_decode($res);
+        $res = $this->sendGuzzle('city?id='.$id);
+//        return $res;
+        if ($res->rajaongkir->status->code == 200){
+            return $res->rajaongkir->results;
+        }else{
+            return null;
+        }
+    }
+
     public function getProvince(){
         $res = $this->sendGuzzle('province');
         return $res;

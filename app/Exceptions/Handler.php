@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-
+//        return parent::render($request, $e);
         if ($e instanceof NotFoundHttpException){
             $diagnostic = array(
                 "status"        => 404,
@@ -59,6 +59,5 @@ class Handler extends ExceptionHandler
                 "error_msgs"    => $e->getMessage()
         );
         return response()->json($diagnostic);
-//        return parent::render($request, $e);
     }
 }

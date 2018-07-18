@@ -32,7 +32,6 @@ class RajaOngkirCity extends Migration
      */
     public function down()
     {
-
         Schema::drop('ro_city');
     }
 }

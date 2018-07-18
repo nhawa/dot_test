@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
@@ -36,7 +37,13 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized.', 401);
+
+            $diagnostic = array(
+                "status"        => 401,
+                "error_msgs"    => 'Unauthorized'
+            );
+            return response()->json($diagnostic);
+//            return response('Unauthorized.', 401);
         }
 
         return $next($request);

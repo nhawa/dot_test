@@ -36,5 +36,8 @@ $router->post('test1','DotTestController@searchNumber');
 //$router->get('testp','RajaOngkirController@getProvince');
 //$router->get('save','RajaOngkirController@saveToDB');
 
-$router->get('search/provinces','AreaController@getProvince');
-$router->get('search/cities','AreaController@getcity');
+$router->post('login','UserController@login');
+$router->group(['middleware'=>'auth'], function () use ($router){
+    $router->get('search/provinces','AreaController@getProvince');
+    $router->get('search/cities','AreaController@getcity');
+});
