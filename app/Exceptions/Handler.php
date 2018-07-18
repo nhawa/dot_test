@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -45,6 +46,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        return parent::render($request, $e);
+//        return parent::render($request, $e);
+        if ($e instanceof NotFoundHttpException){
+            $diagnostic = array(
+                "status"        => 404,
+                "error_msgs"    => 'page not found'
+            );
+            return response()->json($diagnostic);
+        }
+        $diagnostic = array(
+                "status"        => 500,
+                "error_msgs"    => $e->getMessage()
+        );
+        return response()->json($diagnostic);
     }
 }

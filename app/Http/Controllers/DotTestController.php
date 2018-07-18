@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use GuzzleHttp;
 use Illuminate\Http\Request;
 
 class DotTestController extends Controller
@@ -29,10 +28,5 @@ class DotTestController extends Controller
         $number = $array[1]; //get second largest of array
         $arr = $request->arr;
         return view('test1',compact('number','arr'));
-    }
-    public function test2Sprint1(){
-        $client = new GuzzleHttp\Client();
-
-        return 'ini test2';
     }
 }
